@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>io.metaloom.poc</groupId>
+		<artifactId>poc-vertx-jooq</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>poc-vertx-jooq-bom</artifactId>
+	<name>Vert.x JOOQ - BOM</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<vertx.version>4.0.3</vertx.version>
+		<postgres.driver.version>42.2.2</postgres.driver.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>io.vertx</groupId>
+				<artifactId>vertx-stack-depchain</artifactId>
+				<version>4.0.3</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<!-- Dagger -->
+			<dependency>
+				<groupId>com.google.dagger</groupId>
+				<artifactId>dagger</artifactId>
+				<version>${dagger.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.dagger</groupId>
+				<artifactId>dagger-compiler</artifactId>
+				<version>${dagger.version}</version>
+				<optional>true</optional>
+			</dependency>
+
+			<!-- RX -->
+			<dependency>
+				<groupId>io.reactivex.rxjava2</groupId>
+				<artifactId>rxjava</artifactId>
+				<version>2.1.9</version>
+			</dependency>
+
+			<!-- JDBC -->
+			<dependency>
+				<groupId>io.vertx</groupId>
+				<artifactId>vertx-sql-client</artifactId>
+				<version>${vertx.version}</version>
+			</dependency>
+
+			<!-- JOOQ -->
+			<dependency>
+				<groupId>org.jooq</groupId>
+				<artifactId>jooq</artifactId>
+				<version>3.14.8</version>
+			</dependency>
+
+			<!-- Flyway -->
+			<dependency>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-core</artifactId>
+				<version>7.8.2</version>
+			</dependency>
+
+			<!-- Testcontainer -->
+			<dependency>
+				<groupId>org.testcontainers</groupId>
+				<artifactId>testcontainers</artifactId>
+				<version>1.15.3</version>
+			</dependency>
+			<dependency>
+				<groupId>org.testcontainers</groupId>
+				<artifactId>postgresql</artifactId>
+				<version>1.15.3</version>
+			</dependency>
+
+			<!-- Utilities -->
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>30.1.1-jre</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-cli</groupId>
+				<artifactId>commons-cli</artifactId>
+				<version>1.4</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>3.12.0</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>2.8.0</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-codec</groupId>
+				<artifactId>commons-codec</artifactId>
+				<version>1.15</version>
+			</dependency>
+
+			<!-- PoC Dependencies -->
+			<dependency>
+				<groupId>io.metaloom.poc</groupId>
+				<artifactId>poc-vertx-jooq-server</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.metaloom.poc</groupId>
+				<artifactId>poc-vertx-jooq-rest</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.metaloom.poc</groupId>
+				<artifactId>poc-vertx-jooq-common</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.metaloom.poc</groupId>
+				<artifactId>poc-vertx-jooq-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<!-- Test dependencies -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.13.2</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+</project>

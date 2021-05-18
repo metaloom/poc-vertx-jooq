@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>io.metaloom.poc</groupId>
+		<artifactId>poc-vertx-jooq</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>poc-vertx-jooq-jooq</artifactId>
+	<name>Vert.x JOOQ - JOOQ</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>io.metaloom.poc</groupId>
+				<artifactId>poc-vertx-jooq-bom</artifactId>
+				<version>${project.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<artifactId>poc-vertx-jooq-common</artifactId>
+			<groupId>io.metaloom.poc</groupId>
+		</dependency>
+		<dependency>
+			<groupId>com.google.dagger</groupId>
+			<artifactId>dagger-compiler</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<!-- JOOQ -->
+		<dependency>
+			<groupId>org.jooq</groupId>
+			<artifactId>jooq</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.github.jklingsporn</groupId>
+			<artifactId>vertx-jooq-rx-reactive</artifactId>
+			<version>${vertx.jooq.version}</version>
+		</dependency>
+
+		<!-- JDBC -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>${postgres.driver.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-sql-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-pg-client</artifactId>
+		</dependency>
+
+		<!-- Test -->
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<!-- Specify the maven code generator plugin -->
+				<groupId>org.jooq</groupId>
+				<artifactId>jooq-codegen-maven</artifactId>
+
+				<!-- The plugin should hook into the generate goal -->
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+
+				<dependencies>
+					<dependency>
+						<groupId>org.postgresql</groupId>
+						<artifactId>postgresql</artifactId>
+						<version>${postgres.driver.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>io.github.jklingsporn</groupId>
+						<artifactId>vertx-jooq-generate</artifactId>
+						<version>${vertx.jooq.version}</version>
+					</dependency>
+				</dependencies>
+
+				<!-- Specify the plugin configuration. The configuration format is the 
+					same as for the standalone code generator -->
+				<configuration>
+					<!-- JDBC connection parameters -->
+					<jdbc>
+						<driver>org.postgresql.Driver</driver>
+						<url>jdbc:postgresql://localhost:5432/postgres</url>
+						<user>postgres</user>
+						<password>finger</password>
+					</jdbc>
+
+					<!-- Generator parameters -->
+					<generator>
+						<name>io.github.jklingsporn.vertx.jooq.generate.rx.RXReactiveVertxGenerator</name>
+						<database>
+							<name>org.jooq.meta.postgres.PostgresDatabase</name>
+							<includes>.*</includes>
+							<inputSchema>public</inputSchema>
+							<outputSchema>public</outputSchema>
+							<unsignedTypes>false</unsignedTypes>
+							<forcedTypes>
+								<!-- Convert tinyint to boolean -->
+								<forcedType>
+									<name>BOOLEAN</name>
+									<types>(?i:TINYINT)</types>
+								</forcedType>
+							</forcedTypes>
+						</database>
+						<target>
+							<packageName>io.metaloom.poc.db.jooq</packageName>
+							<directory>src/jooq/java</directory>
+						</target>
+						<generate>
+							<interfaces>true</interfaces>
+							<daos>true</daos>
+							<fluentSetters>true</fluentSetters>
+						</generate>
+						<strategy>
+							<name>io.github.jklingsporn.vertx.jooq.generate.VertxGeneratorStrategy</name>
+						</strategy>
+					</generator>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>${project.basedir}/src/jooq/java/</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<forceJavacCompilerUse>true</forceJavacCompilerUse>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>com.google.dagger</groupId>
+						<artifactId>dagger-compiler</artifactId>
+						<version>${dagger.version}</version>
+						<optional>true</optional>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
