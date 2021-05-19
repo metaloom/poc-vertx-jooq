@@ -82,6 +82,13 @@
 				<version>1.15.3</version>
 			</dependency>
 
+			<dependency>
+				<groupId>io.reactivex.rxjava2</groupId>
+				<artifactId>rxjava</artifactId>
+				<version>2.2.21</version>
+			</dependency>
+
+
 			<!-- Utilities -->
 			<dependency>
 				<groupId>com.google.guava</groupId>
@@ -112,6 +119,16 @@
 			<!-- PoC Dependencies -->
 			<dependency>
 				<groupId>io.metaloom.poc</groupId>
+				<artifactId>poc-vertx-jooq-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.metaloom.poc</groupId>
+				<artifactId>poc-vertx-jooq-flyway</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.metaloom.poc</groupId>
 				<artifactId>poc-vertx-jooq-server</artifactId>
 				<version>${project.version}</version>
 			</dependency>
@@ -123,11 +140,6 @@
 			<dependency>
 				<groupId>io.metaloom.poc</groupId>
 				<artifactId>poc-vertx-jooq-common</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>io.metaloom.poc</groupId>
-				<artifactId>poc-vertx-jooq-api</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 

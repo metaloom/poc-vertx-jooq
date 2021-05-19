@@ -11,7 +11,7 @@
 	</parent>
 
 	<artifactId>poc-vertx-jooq-api</artifactId>
-	<name>Vert.x Dagger - API</name>
+	<name>Vert.x JOOQ - API</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -13,7 +13,6 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<dagger.version>2.35.1</dagger.version>
 		<postgres.driver.version>42.2.2</postgres.driver.version>
 		<vertx.jooq.version>6.2.0</vertx.jooq.version>
 	</properties>
@@ -44,9 +43,6 @@
 		<module>api</module>
 		<module>jooq</module>
 		<module>flyway</module>
-		<module>common</module>
-		<module>rest</module>
-		<module>server</module>
 	</modules>
 
 	<build>
@@ -116,14 +112,6 @@
 					<source>11</source>
 					<target>11</target>
 				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>com.google.dagger</groupId>
-						<artifactId>dagger-compiler</artifactId>
-						<version>${dagger.version}</version>
-						<optional>true</optional>
-					</dependency>
-				</dependencies>
 			</plugin>
 		</plugins>
 	</build>
