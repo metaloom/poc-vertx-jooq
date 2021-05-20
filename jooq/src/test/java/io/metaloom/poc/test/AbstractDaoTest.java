@@ -58,8 +58,7 @@ public class AbstractDaoTest {
 			.setDatabase(database);
 
 		PgPool client = PgPool.pool(vertx, config, new PoolOptions().setMaxSize(32));
-		Pool rxPgClient = new io.vertx.reactivex.sqlclient.Pool(client);
-		return rxPgClient;
+		return new io.vertx.reactivex.sqlclient.Pool(client);
 	}
 
 	private Configuration jooqConfiguration() {

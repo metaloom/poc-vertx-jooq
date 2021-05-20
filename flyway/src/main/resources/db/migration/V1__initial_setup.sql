@@ -19,6 +19,7 @@ CREATE TABLE "user" (
   "editor_uuid" uuid,
   PRIMARY KEY ("uuid")
 );
+
 CREATE TABLE "group" (
   "uuid" uuid DEFAULT uuid_generate_v4 (),
   "name" varchar UNIQUE NOT NULL,
