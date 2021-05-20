@@ -8,5 +8,3 @@ docker run \
   --rm \
   -e POSTGRES_PASSWORD=finger \
      postgres:13.2
-   #-v postgres-data:/var/lib/postgresql/data \
-  #-d \

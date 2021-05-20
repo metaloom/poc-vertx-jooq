@@ -18,7 +18,6 @@ import io.metaloom.poc.option.DatabaseOptions;
 import io.vertx.core.Vertx;
 import io.vertx.pgclient.PgConnectOptions;
 import io.vertx.pgclient.PgPool;
-import io.vertx.reactivex.sqlclient.Pool;
 import io.vertx.reactivex.sqlclient.SqlClient;
 import io.vertx.sqlclient.PoolOptions;
 

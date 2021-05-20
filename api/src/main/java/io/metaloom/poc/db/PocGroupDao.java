@@ -41,11 +41,37 @@ public interface PocGroupDao {
 	 */
 	Maybe<? extends PocGroup> loadGroup(UUID uuid);
 
-	// Users
+	/**
+	 * Add the given user to the group.
+	 * 
+	 * @param group
+	 * @param user
+	 * @return
+	 */
 	Completable addUserToGroup(PocGroup group, PocUser user);
 
+	/**
+	 * Remove the given user from the group.
+	 * 
+	 * @param group
+	 * @param user
+	 * @return
+	 */
 	Completable removeUserFromGroup(PocGroup group, PocUser user);
 
+	/**
+	 * Load all users that assigned to the group.
+	 * 
+	 * @param group
+	 * @return
+	 */
 	Observable<PocUser> loadUsers(PocGroup group);
+
+	/**
+	 * Invoke a transactional operation which modifies multiple tables.
+	 * 
+	 * @return
+	 */
+	Observable<PocUser> addTwoUsers();
 
 }

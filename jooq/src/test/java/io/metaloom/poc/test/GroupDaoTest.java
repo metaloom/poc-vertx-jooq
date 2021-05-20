@@ -46,4 +46,15 @@ public class GroupDaoTest extends AbstractDaoTest {
 			System.out.println(user.getUsername());
 		});
 	}
+
+	@Test
+	public void testAddTwoUsers() {
+		PocGroupDao groupDao = groupDao();
+		userDao().createUser("User1").blockingGet();
+
+		// Now invoke the multi operation
+		groupDao.addTwoUsers().blockingForEach(user -> {
+			System.out.println("User: " + user.getUsername());
+		});
+	}
 }
