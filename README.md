@@ -1,15 +1,15 @@
-# Vert.x JOOQ PoC
+# Vert.x jOOQ PoC
 
-This Proof of Concepts showcases how jooq can be used in combination with Vert.x.
+This Proof of Concepts showcases how jOOQ can be used in combination with Vert.x.
 
 * Vert.x version: 4.0.3
 * Dagger version: 2.35.1
-* JOOQ version:
+* Vert.x jOOQ version: 6.2.0
 
-The project creates a small API server and consists of the following modules:
+Project modules:
 
-* api - API for REST implementation
+* api - HighLevel API for DAO / Domain model
 * bom - BOM POM for dependency management
-* common - Common dependencies for implementation modules
-* rest - REST API implementation
-* server - Server module which creates the shaded jar
+* flyway - Database schema migration code
+* jooq - jOOQ code generation and tests
+
