@@ -66,16 +66,17 @@ public class AbstractDaoTest {
 	}
 
 	public PocUserDao userDao() {
-		return new PocUserDaoImpl(jooqConfiguration(), sqlClient);
+		UserDao userDao = new UserDao(jooqConfiguration(), sqlClient);
+		return new PocUserDaoImpl(userDao);
 	}
 
 	public PocGroupDao groupDao() {
 		Configuration config = jooqConfiguration();
 
-		UserGroupDao userGroupDao = new UserGroupDao(config, sqlClient);
 		UserDao userDao = new UserDao(config, sqlClient);
+		UserGroupDao userGroupDao = new UserGroupDao(config, sqlClient);
 
-		return new PocGroupDaoImpl(config, sqlClient, userGroupDao, userDao);
+		return new PocGroupDaoImpl(config, sqlClient, userDao, userGroupDao);
 	}
 
 }
